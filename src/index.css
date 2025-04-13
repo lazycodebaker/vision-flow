@@ -1,0 +1,346 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 9%;
+    --sidebar-accent: 0 0% 14.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 14.9%;
+    --sidebar-ring: 215 20.2% 65.1%;
+  }
+  
+  .light-theme {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 9%;
+    --sidebar-primary: 0 0% 9%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 96.1%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 89.8%;
+    --sidebar-ring: 0 0% 3.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* React Flow Custom Styles */
+.react-flow__handle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.light-theme .react-flow__handle {
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.react-flow__handle-top {
+  top: -3px;
+}
+
+.react-flow__handle-bottom {
+  bottom: -3px;
+}
+
+.react-flow__node {
+  border-radius: 6px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.react-flow__node:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.input-node {
+  background-color: #000;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .input-node {
+  background-color: #fff;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.output-node {
+  background-color: #000;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .output-node {
+  background-color: #fff;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.face-detection-node {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-left: 4px solid theme('colors.node.face');
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .face-detection-node {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-left: 4px solid theme('colors.node.face');
+  color: #333;
+}
+
+.depth-estimation-node {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-left: 4px solid theme('colors.node.depth');
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .depth-estimation-node {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-left: 4px solid theme('colors.node.depth');
+  color: #333;
+}
+
+.sobel-filter-node {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-left: 4px solid theme('colors.node.sobel');
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .sobel-filter-node {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-left: 4px solid theme('colors.node.sobel');
+  color: #333;
+}
+
+.blur-effect-node {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-left: 4px solid theme('colors.node.blur');
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .blur-effect-node {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-left: 4px solid theme('colors.node.blur');
+  color: #333;
+}
+
+.edge-detection-node {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-left: 4px solid theme('colors.node.edge');
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .edge-detection-node {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-left: 4px solid theme('colors.node.edge');
+  color: #333;
+}
+
+.dndnode {
+  @apply cursor-grab p-2 mb-2 rounded-md transition-all duration-200 shadow-md;
+}
+
+.react-flow__node-custom {
+  border-radius: 6px;
+  padding: 6px 4px;
+  transition: all 0.2s ease;
+  max-width: 170px;
+}
+
+.light-theme .react-flow__node-custom {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.react-flow__node-custom:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.custom-node-form {
+  margin-top: 6px;
+}
+
+.custom-node-form label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 10px;
+}
+
+.custom-node-form input[type="range"] {
+  height: 2px;
+}
+
+.react-flow__controls {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.light-theme .react-flow__controls-button {
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.react-flow__controls-button svg {
+  fill: white;
+}
+
+.light-theme .react-flow__controls-button svg {
+  fill: black;
+}
+
+.react-flow__minimap {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.react-flow__edge-path {
+  stroke-width: 2;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 5;
+  animation: dashdraw 1s linear infinite;
+}
+
+.glass-effect {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes dashdraw {
+  from {
+    stroke-dashoffset: 10;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+}
