@@ -1,7 +1,13 @@
-#define EXIT_SUCCESS 0
 #include <iostream>
 
-int main () {
-    std::cout << "Hello, World!" << std::endl;
+#include "server.hpp"
+
+int main()
+{
+    std::cout << "Running : Vision Flow Canvas Server" << std::endl;
+
+    Server server("localhost", 8080);
+    server.start();
+
     return EXIT_SUCCESS;
 }

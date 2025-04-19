@@ -57,7 +57,7 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/lazycodebaker/Downloads/vision-flow-canvas-main
+CMAKE_SOURCE_DIR = /Users/lazycodebaker/Downloads/vision-flow-canvas-main/server
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/lazycodebaker/Downloads/vision-flow-canvas-main/build
@@ -116,6 +116,176 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named vision-flow-canvas
+
+# Build rule for target.
+vision-flow-canvas: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vision-flow-canvas
+.PHONY : vision-flow-canvas
+
+# fast build rule for target.
+vision-flow-canvas/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/build
+.PHONY : vision-flow-canvas/fast
+
+#=============================================================================
+# Target rules for targets named face_detection
+
+# Build rule for target.
+face_detection: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 face_detection
+.PHONY : face_detection
+
+# fast build rule for target.
+face_detection/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/face_detection.dir/build.make CMakeFiles/face_detection.dir/build
+.PHONY : face_detection/fast
+
+main.o: main.cpp.o
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/main.cpp.s
+.PHONY : main.cpp.s
+
+plugins_src/face_detection.o: plugins_src/face_detection.cpp.o
+.PHONY : plugins_src/face_detection.o
+
+# target to build an object file
+plugins_src/face_detection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/face_detection.dir/build.make CMakeFiles/face_detection.dir/plugins_src/face_detection.cpp.o
+.PHONY : plugins_src/face_detection.cpp.o
+
+plugins_src/face_detection.i: plugins_src/face_detection.cpp.i
+.PHONY : plugins_src/face_detection.i
+
+# target to preprocess a source file
+plugins_src/face_detection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/face_detection.dir/build.make CMakeFiles/face_detection.dir/plugins_src/face_detection.cpp.i
+.PHONY : plugins_src/face_detection.cpp.i
+
+plugins_src/face_detection.s: plugins_src/face_detection.cpp.s
+.PHONY : plugins_src/face_detection.s
+
+# target to generate assembly for a file
+plugins_src/face_detection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/face_detection.dir/build.make CMakeFiles/face_detection.dir/plugins_src/face_detection.cpp.s
+.PHONY : plugins_src/face_detection.cpp.s
+
+src/node_processor.o: src/node_processor.cpp.o
+.PHONY : src/node_processor.o
+
+# target to build an object file
+src/node_processor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/node_processor.cpp.o
+.PHONY : src/node_processor.cpp.o
+
+src/node_processor.i: src/node_processor.cpp.i
+.PHONY : src/node_processor.i
+
+# target to preprocess a source file
+src/node_processor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/node_processor.cpp.i
+.PHONY : src/node_processor.cpp.i
+
+src/node_processor.s: src/node_processor.cpp.s
+.PHONY : src/node_processor.s
+
+# target to generate assembly for a file
+src/node_processor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/node_processor.cpp.s
+.PHONY : src/node_processor.cpp.s
+
+src/plugin_interface.o: src/plugin_interface.cpp.o
+.PHONY : src/plugin_interface.o
+
+# target to build an object file
+src/plugin_interface.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/plugin_interface.cpp.o
+.PHONY : src/plugin_interface.cpp.o
+
+src/plugin_interface.i: src/plugin_interface.cpp.i
+.PHONY : src/plugin_interface.i
+
+# target to preprocess a source file
+src/plugin_interface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/plugin_interface.cpp.i
+.PHONY : src/plugin_interface.cpp.i
+
+src/plugin_interface.s: src/plugin_interface.cpp.s
+.PHONY : src/plugin_interface.s
+
+# target to generate assembly for a file
+src/plugin_interface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/plugin_interface.cpp.s
+.PHONY : src/plugin_interface.cpp.s
+
+src/plugin_manager.o: src/plugin_manager.cpp.o
+.PHONY : src/plugin_manager.o
+
+# target to build an object file
+src/plugin_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/plugin_manager.cpp.o
+.PHONY : src/plugin_manager.cpp.o
+
+src/plugin_manager.i: src/plugin_manager.cpp.i
+.PHONY : src/plugin_manager.i
+
+# target to preprocess a source file
+src/plugin_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/plugin_manager.cpp.i
+.PHONY : src/plugin_manager.cpp.i
+
+src/plugin_manager.s: src/plugin_manager.cpp.s
+.PHONY : src/plugin_manager.s
+
+# target to generate assembly for a file
+src/plugin_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/plugin_manager.cpp.s
+.PHONY : src/plugin_manager.cpp.s
+
+src/server.o: src/server.cpp.o
+.PHONY : src/server.o
+
+# target to build an object file
+src/server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/server.cpp.o
+.PHONY : src/server.cpp.o
+
+src/server.i: src/server.cpp.i
+.PHONY : src/server.i
+
+# target to preprocess a source file
+src/server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/server.cpp.i
+.PHONY : src/server.cpp.i
+
+src/server.s: src/server.cpp.s
+.PHONY : src/server.s
+
+# target to generate assembly for a file
+src/server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vision-flow-canvas.dir/build.make CMakeFiles/vision-flow-canvas.dir/src/server.cpp.s
+.PHONY : src/server.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -124,6 +294,26 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... face_detection"
+	@echo "... vision-flow-canvas"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
+	@echo "... plugins_src/face_detection.o"
+	@echo "... plugins_src/face_detection.i"
+	@echo "... plugins_src/face_detection.s"
+	@echo "... src/node_processor.o"
+	@echo "... src/node_processor.i"
+	@echo "... src/node_processor.s"
+	@echo "... src/plugin_interface.o"
+	@echo "... src/plugin_interface.i"
+	@echo "... src/plugin_interface.s"
+	@echo "... src/plugin_manager.o"
+	@echo "... src/plugin_manager.i"
+	@echo "... src/plugin_manager.s"
+	@echo "... src/server.o"
+	@echo "... src/server.i"
+	@echo "... src/server.s"
 .PHONY : help
 
 
