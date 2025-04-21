@@ -105,8 +105,7 @@ void Server::start()
             
             std::cout << "Temporary files cleaned up." << std::endl;
 
-            // Set response status and content
-            delete[] file.content.c_str();
+            // Set response status and content 
             delete processor;
         }
         catch (const std::exception &e)

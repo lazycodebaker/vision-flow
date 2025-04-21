@@ -1,4 +1,0 @@
-/Users/lazycodebaker/Downloads/vision-flow-canvas-main/build/CMakeFiles/vision-flow-canvas.dir
-/Users/lazycodebaker/Downloads/vision-flow-canvas-main/build/CMakeFiles/face_detection.dir
-/Users/lazycodebaker/Downloads/vision-flow-canvas-main/build/CMakeFiles/edit_cache.dir
-/Users/lazycodebaker/Downloads/vision-flow-canvas-main/build/CMakeFiles/rebuild_cache.dir
