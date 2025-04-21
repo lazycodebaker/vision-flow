@@ -1,0 +1,2 @@
+server: cd server && cmake -S . -B build && cmake --build build && ./build/bin/vision-flow-canvas
+web: bun run dev
