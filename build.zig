@@ -8,12 +8,12 @@ pub fn build(b: *std.Build) void {
     const compile_cpp = b.addSystemCommand(&[_][]const u8{
         "cmake", "--build", "build",
     });
-    compile_cpp.step.dependOn(&build_cpp.step); // 👈 fixed this
+    compile_cpp.step.dependOn(&build_cpp.step);  
 
     const run_cpp_server = b.addSystemCommand(&[_][]const u8{
         "./build/bin/vision-flow-canvas",
     });
-    run_cpp_server.step.dependOn(&compile_cpp.step); // 👈 fixed this
+    run_cpp_server.step.dependOn(&compile_cpp.step);  
 
     const run_vite = b.addSystemCommand(&[_][]const u8{
         "bun", "run", "dev",
