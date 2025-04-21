@@ -14,6 +14,7 @@ import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useTheme } from '@/hooks/use-theme';
 
 import { projectSettings } from '@/settings';
+import axios from 'axios';
 
 const defaultSettings: SettingsType = {
   processingQuality: 2,
@@ -87,36 +88,31 @@ const Index = () => {
           params: node.data.params
         }
       }));
-
-      const SERVER_URL = `${projectSettings}/process`;
+      const SERVER_URL = `${projectSettings.server.url}/process`;
       const formData = new FormData();
       formData.append('file', uploadedFile);
-      formData.append('pipeline', JSON.stringify(pipelineObject));
+      formData.append('graph', JSON.stringify(pipelineObject));
 
-      fetch(SERVER_URL, {
-        method: 'POST',
-        body: formData
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          toast.success("Pipeline processed successfully");
-        })
-        .catch(error => {
-          console.error(error);
-          toast.error("Error processing pipeline");
+      try {
+        const response = await axios.post(SERVER_URL, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          responseType: 'blob',
         });
 
-      // Simulate backend processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
+        const imageBlob = response.data;
+        const imageUrl = URL.createObjectURL(imageBlob);
 
-      // In a real implementation, we would receive the processed output from the backend
-      // For now, just use the original file as the "processed" output
-      if (previewUrl) {
-        setOutputUrl(previewUrl);
-        setOutputType(uploadedFile!.type.includes('image') ? 'image' : 'video');
+        if (imageUrl) {
+          setOutputUrl(imageUrl);
+          setOutputType(uploadedFile!.type.includes('image') ? 'image' : 'video');
+        }
+
+      } catch (error) {
+        console.error("Pipeline processing failed:", error);
+        toast.error("Failed to process pipeline");
       }
-
       // Add to processing history
       const timestamp = new Date().toLocaleTimeString();
       const nodeCount = processingNodes.length;

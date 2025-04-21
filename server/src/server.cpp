@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 
 #include "server.hpp"
+#include "node_processor.hpp"
 
 Server::Server(const std::string &host, int port)
     : host_(host), port_(port)
@@ -12,6 +13,13 @@ Server::Server(const std::string &host, int port)
 
 void Server::start()
 {
+    this->server_->Options(".*", [](const httplib::Request &req, httplib::Response &res)
+                           {
+                               res.set_header("Access-Control-Allow-Origin", "*");
+                               res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                               res.set_header("Access-Control-Allow-Headers", "Content-Type");
+                               res.status = 204; // No Content
+                           });
 
     this->server_->Get("/api/version", [](const httplib::Request &req, httplib::Response &res)
                        {
@@ -25,8 +33,12 @@ void Server::start()
         json_response["status"] = "ok";
         res.set_content(json_response.dump(), "application/json"); });
 
-    this->server_->Post("/api/pipeline", [](const httplib::Request &req, httplib::Response &res)
+    this->server_->Post("/api/process", [](const httplib::Request &req, httplib::Response &res)
                         {
+
+                            res.set_header("Access-Control-Allow-Origin", "*");
+                            res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                            res.set_header("Access-Control-Allow-Headers", "Content-Type");
         try
         {
             if (!req.has_file("file") || !req.has_file("graph"))
@@ -43,23 +55,44 @@ void Server::start()
             ofs.write(file.content.c_str(), file.content.size());
             ofs.close();
 
+            std::cout << "Input file saved to: " << inputPath << std::endl;
+
+            // Load the graph
+            // Assuming the graph is in JSON format
             const httplib::MultipartFormData &graphFile = req.get_file_value("graph");
             nlohmann::json graph = nlohmann::json::parse(graphFile.content);
 
-            // Process the pipeline
-            cv::Mat result; // = processor_.process(graph, inputPath);
+            std::cout << "Graph loaded: " << graph.dump() << std::endl;
+
+            /*
+            [   
+                {
+                    "label":"Depth Estimation",
+                    "params":{
+                        "model":"MiDaS Large"
+                    },
+                    "type":"depth_estimation"
+                },
+                {
+                    "label":"Sobel Filter",
+                    "params":{
+                        "ksize":8
+                    },
+                    "type":"sobel_filter"
+                }
+            ]
+            */
+
+            // send this graph to the processor 
+            NodeProcessor *processor = new NodeProcessor();
+            cv::Mat result = processor->process(graph, inputPath);
 
             // Save result to temporary file
             std::string outputPath = "server/temp/output_" + file.filename;
-            if (inputPath.find(".mp4"))
-            {
-                // For simplicity, save as image (extend for video if needed)
-                cv::imwrite(outputPath, result);
-            }
-            else
-            {
-                cv::imwrite(outputPath, result);
-            }
+
+            cv::imwrite(outputPath, result);
+
+            std::cout << "Output file saved to: " << outputPath << std::endl;
 
             // Read and return result
             std::ifstream ifs(outputPath, std::ios::binary);
@@ -69,9 +102,18 @@ void Server::start()
             // Clean up
             std::filesystem::remove(inputPath);
             std::filesystem::remove(outputPath);
+            
+            std::cout << "Temporary files cleaned up." << std::endl;
+
+            // Set response status and content
+            delete[] file.content.c_str();
+            delete processor;
         }
         catch (const std::exception &e)
         {
+            std::cout << "Error: " << e.what() << std::endl;
+            // Handle error
+            // Set response status and content
             res.status = 500;
             res.set_content("Error: " + std::string(e.what()), "text/plain");
         } });

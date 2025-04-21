@@ -7,6 +7,6 @@ type ProjectSettingsType = {
 
 export const projectSettings: ProjectSettingsType = {
     server: {
-        url: "http://localhost:9000"
+        url: "http://localhost:9000/api"
     }
 }
