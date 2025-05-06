@@ -18,3 +18,27 @@ PluginManager::PluginManager(const std::string &libPath)
     }
 #endif
 }
+
+PluginManager::~PluginManager()
+{
+    if (handle)
+    {
+#ifdef _WIN32
+        FreeLibrary(handle);
+#else
+        dlclose(handle);
+#endif
+    }
+}
+
+void *PluginManager::getFunction(const std::string &functionName)
+{
+    if (!handle)
+        return nullptr;
+
+#ifdef _WIN32
+    return (void *)GetProcAddress(handle, functionName.c_str());
+#else
+    return dlsym(handle, functionName.c_str());
+#endif
+}

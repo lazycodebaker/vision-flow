@@ -20,6 +20,7 @@ class PluginManager
 public:
     PluginManager(const std::string &libPath);
     ~PluginManager();
+    void *getFunction(const std::string &functionName);
 
 private:
     LibraryHandle handle;

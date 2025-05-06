@@ -98,19 +98,18 @@ void Server::start()
             std::ifstream ifs(outputPath, std::ios::binary);
             std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
             res.set_content(content, "application/octet-stream");
+            res.status = 200;
 
             // Clean up
             std::filesystem::remove(inputPath);
             std::filesystem::remove(outputPath);
             
             std::cout << "Temporary files cleaned up." << std::endl;
-
-            // Set response status and content 
             delete processor;
         }
         catch (const std::exception &e)
         {
-            std::cout << "Error: " << e.what() << std::endl;
+            std::cout << "Error: (server.cpp: 113) " << e.what() << std::endl;
             // Handle error
             // Set response status and content
             res.status = 500;

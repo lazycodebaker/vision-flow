@@ -14,6 +14,8 @@ public:
     NodeProcessor(PluginManager &pluginManager);
     ~NodeProcessor();
 
+    
+
     cv::Mat process(const nlohmann::json &graph, const std::string &inputPath);
 
 private:
